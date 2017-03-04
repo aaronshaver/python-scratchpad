@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 def sum(n):
     if n <= 0:
         return 0
