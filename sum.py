@@ -1,6 +1,8 @@
 def sum(n):
-    if n <= 0: return 0
+    if n <= 0:
+        return 0
     return n + sum(n-1)
+
 
 def sum2(n):
     return n * (n + 1) // 2
