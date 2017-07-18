@@ -18,6 +18,5 @@ class TestRadialPrint(unittest.TestCase):
             radial_print('the'))
 
     def test_two_word(self):
-        self.assertEqual('d   d   d\n c  c  c \n   bbb   \ndc bab cd\n'
-            '   bbb   \n c  c  c \nd   d   d',
-            radial_print('ab', 'cd'))
+        expected = 'b b b\n     \nb A b\n     \nb b b'
+        self.assertEqual(expected, radial_print('A', 'b'))

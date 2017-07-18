@@ -11,15 +11,17 @@ def stringify(grid):
 
 
 def join_text(*text):
-    text = text[0]
     char = ''
     if len(text) > 1:
         char = ' '
     output = ''
     for word in text:
+        if len(word) > 1:
+            word = ' '.join(word)
+        else:
+            word = word[0]
         output += word + char
     output = output.rstrip()  # strip last space
-    print(output)
     return output
 
 
