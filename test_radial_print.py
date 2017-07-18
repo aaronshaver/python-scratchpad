@@ -10,8 +10,14 @@ class TestRadialPrint(unittest.TestCase):
         self.assertEqual('', radial_print(''))
 
     def test_two_letter(self):
-        self.assertEqual('sss\nsis\nsss', radial_print('is'))
+        expected = 'sss\nsis\nsss'
+        self.assertEqual(expected, radial_print('is'))
 
     def test_three_letter(self):
-        self.assertEqual('e e e\n hhh \nehthe\n hhh \ne e e\n',
+        self.assertEqual('e e e\n hhh \nehthe\n hhh \ne e e',
             radial_print('the'))
+
+    def test_two_word(self):
+        self.assertEqual('d   d   d\n c  c  c \n   bbb   \ndc bab cd\n'
+            '   bbb   \n c  c  c \nd   d   d',
+            radial_print('ab', 'cd'))
