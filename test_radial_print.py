@@ -31,3 +31,7 @@ class TestRadialPrint(unittest.TestCase):
     def test_two_word_list(self):
         expected = 'b b b\n     \nb A b\n     \nb b b'
         self.assertEqual(expected, radial_print(['A', 'b']))
+
+    def test_two_word_multichar_string(self):
+        expected = 'i   i   i\n d  d  d \n         \n   ooo   \nid oCo di\n   ooo   \n         \n d  d  d \ni   i   i' 
+        self.assertEqual(expected, radial_print('Co', 'di'))
