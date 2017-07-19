@@ -10,14 +10,14 @@ def stringify(grid):
     return output[:-1]  # remove extra line break
 
 
-def join_text(*text):
+def join_text(text):
     char = ''
     if len(text) > 1:
         char = ' '
     output = ''
     for word in text:
         if len(word) > 1:
-            word = ' '.join(word)
+            word = ''.join(word)
         else:
             word = word[0]
         output += word + char
@@ -26,18 +26,28 @@ def join_text(*text):
 
 
 def radial_print(*text):
-    text = join_text(*text)
-    text_length = len(text)
-    origin_coord = text_length - 1
 
-    grid_side_length = (text_length * 2) - 1
-    if grid_side_length < 0:
+    # return null if we receive null, empty string if empty string
+    if not text:
+        return None
+    elif text[0] == '':
         return ''
 
-    # initialize grid
-    grid = [[' ' for x in range(grid_side_length)] \
-        for y in range(grid_side_length)]
+    if isinstance(text[0], basestring):  # to support passing in a string
+        text = list(text)
+    elif isinstance(text, tuple):  # support multi-word input
+        text = text[0]
 
+    text = join_text(text)
+    text_length = len(text)
+
+    grid_side_length = (text_length * 2) - 1
+
+    # initialize grid
+    grid = [[' ' for x in range(grid_side_length)]
+            for y in range(grid_side_length)]
+
+    origin_coord = text_length - 1
     x, y = origin_coord, origin_coord
 
     j = 0
@@ -58,7 +68,7 @@ def radial_print(*text):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        print(radial_print(sys.argv[1:]))
-    else:
+    if len(sys.argv) < 2:  # no input
         print('Please supply text to radial print')
+    else:
+        print(radial_print(sys.argv[1:]))
