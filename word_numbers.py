@@ -17,8 +17,19 @@ class WordNumbers():
             return 1
 
     def convert(self, number):
-        if self.get_digit_count(number) == 1:
+        count = self.get_digit_count(number)
+        if count == 1:
             return self.single_digit_numbers[number]
+        elif count == 2:
+            return self.double_digit_numbers[number]
+        elif count in [4, 5]:
+            thousands_number = int(str(number)[:-3])
+            if self.get_digit_count(thousands_number) == 2:
+                return self.double_digit_numbers[thousands_number] + " thousand"
+            else:
+                return self.single_digit_numbers[thousands_number] + " thousand"
+        elif count in [7]:
+            return "one million"
 
     single_digit_numbers = {
         0: "zero",
@@ -31,4 +42,25 @@ class WordNumbers():
         7: "seven",
         8: "eight",
         9: "nine",
+    }
+
+    double_digit_numbers = {
+        10: "ten",
+        11: "eleven",
+        12: "twelve",
+        13: "thirteen",
+        14: "fourteen",
+        15: "fifteen",
+        16: "sixteen",
+        17: "seventeen",
+        18: "eighteen",
+        19: "nineteen",
+        20: "twenty",
+        30: "thirty",
+        40: "forty",
+        50: "fifty",
+        60: "sixty",
+        70: "seventy",
+        80: "eighty",
+        90: "ninety",
     }
