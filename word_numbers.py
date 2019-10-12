@@ -6,6 +6,17 @@ Constraints/etc.:
 - input is a number, not a string representing a number
 """
 
-@staticmethod
-def convert(number):
-    return "one"
+import math
+
+class WordNumbers():
+
+    @staticmethod
+    def get_digit_count(number):
+        if number > 0:
+            return int(math.log10(number))+1
+        elif number == 0:
+            return 1
+
+    @staticmethod
+    def convert(number):
+        return "one"
