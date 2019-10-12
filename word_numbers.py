@@ -18,31 +18,42 @@ class WordNumbers():
             return 1
 
     def convert(self, number):
-        count = self.get_digit_count(number)
-        if count == 1:
+        total_count = self.get_digit_count(number)
+        if total_count == 1:
             return self.single_digit_numbers[number]
-        elif count == 2:
+        elif total_count == 2:
             return self.convert_two_digit(number)
-        elif count == 3:
-            hundreds_number = int(str(number)[:-2])
-            return self.single_digit_numbers[hundreds_number] + " hundred " + \
-                self.convert_two_digit(int(str(number)[-2:]))
-
-        elif count in [4, 5]:
+        elif total_count == 3:
+            return self.convert_three_digit(number)
+        elif total_count in [4, 5, 6]:
             thousands_number = int(str(number)[:-3])
-            if self.get_digit_count(thousands_number) == 2:
-                return self.convert_two_digit(thousands_number) + " thousand"
+            thousands_count = self.get_digit_count(thousands_number)
+            if thousands_count == 1:
+                output = self.single_digit_numbers[thousands_number]
+            elif thousands_count == 2:
+                output = self.convert_two_digit(thousands_number)
             else:
-                return self.single_digit_numbers[thousands_number] + " thousand"
-        elif count in [7]:
+                output = self.convert_three_digit(thousands_number)
+            return output + " thousand"
+        elif total_count in [7]:
             return "one million"
+
+    def convert_three_digit(self, number):
+        hundreds_number = int(str(number)[:-2])
+        remaining_numbers = int(str(number)[-2:])
+        output = self.single_digit_numbers[hundreds_number] + " hundred"
+        if remaining_numbers != 0:
+            output += " " + self.convert_two_digit(remaining_numbers)
+        return output
 
     def convert_two_digit(self, number):
         if number in self.double_digit_numbers.keys():
             return self.double_digit_numbers[number]
-        else:
+        elif number != 0:
             return self.double_digit_numbers[number // 10 * 10] + " " + \
                 self.single_digit_numbers[number % 10]
+        else:
+            return ""
 
     single_digit_numbers = {
         0: "zero",

@@ -79,3 +79,12 @@ class Tests(unittest.TestCase):
 
     def test_convert_876(self):
         self.assertEqual("eight hundred seventy six", self.converter.convert(876))
+    
+    def test_convert_900_000(self):
+        self.assertEqual("nine hundred thousand", self.converter.convert(900000))
+
+    def test_convert_145_000(self):
+        self.assertEqual("one hundred forty five thousand", self.converter.convert(145000))
+
+    def test_convert_140_000(self):
+        self.assertEqual("one hundred forty thousand", self.converter.convert(140000))
