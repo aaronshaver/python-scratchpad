@@ -22,19 +22,27 @@ class WordNumbers():
         if count == 1:
             return self.single_digit_numbers[number]
         elif count == 2:
-            if number in self.double_digit_numbers.keys():
-                return self.double_digit_numbers[number]
-            else:
-                return self.double_digit_numbers[number // 10 * 10] + " " + \
-                    self.single_digit_numbers[number % 10]
+            return self.convert_two_digit(number)
+        elif count == 3:
+            hundreds_number = int(str(number)[:-2])
+            return self.single_digit_numbers[hundreds_number] + " hundred " + \
+                self.convert_two_digit(int(str(number)[-2:]))
+
         elif count in [4, 5]:
             thousands_number = int(str(number)[:-3])
             if self.get_digit_count(thousands_number) == 2:
-                return self.double_digit_numbers[thousands_number] + " thousand"
+                return self.convert_two_digit(thousands_number) + " thousand"
             else:
                 return self.single_digit_numbers[thousands_number] + " thousand"
         elif count in [7]:
             return "one million"
+
+    def convert_two_digit(self, number):
+        if number in self.double_digit_numbers.keys():
+            return self.double_digit_numbers[number]
+        else:
+            return self.double_digit_numbers[number // 10 * 10] + " " + \
+                self.single_digit_numbers[number % 10]
 
     single_digit_numbers = {
         0: "zero",
