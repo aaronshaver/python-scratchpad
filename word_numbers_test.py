@@ -65,15 +65,6 @@ class Tests(unittest.TestCase):
     def test_convert_82_000(self):
         self.assertEqual("eighty two thousand", self.converter.convert(82000))
 
-    def test_convert_3(self):
-        self.assertEqual("three", self.converter.convert(3))
-
-    def test_convert_33(self):
-        self.assertEqual("thirty three", self.converter.convert(33))
-
-    def test_convert_333(self):
-        self.assertEqual("three hundred thirty three", self.converter.convert(333))
-
     def test_convert_123(self):
         self.assertEqual("one hundred twenty three", self.converter.convert(123))
 
@@ -88,3 +79,39 @@ class Tests(unittest.TestCase):
 
     def test_convert_140_000(self):
         self.assertEqual("one hundred forty thousand", self.converter.convert(140000))
+    
+    def test_convert_106(self):
+        self.assertEqual("one hundred six", self.converter.convert(106))
+
+    def test_convert_106_000(self):
+        self.assertEqual("one hundred six thousand", self.converter.convert(106000))
+
+    def test_convert_3(self):
+        self.assertEqual("three", self.converter.convert(3))
+
+    def test_convert_33(self):
+        self.assertEqual("thirty three", self.converter.convert(33))
+
+    def test_convert_333(self):
+        self.assertEqual("three hundred thirty three", self.converter.convert(333))
+
+    def test_convert_3333(self):
+        self.assertEqual("three thousand three hundred thirty three", self.converter.convert(3333))
+
+    def test_convert_33333(self):
+        self.assertEqual("thirty three thousand three hundred thirty three", self.converter.convert(33333))
+
+    def test_convert_333333(self):
+        self.assertEqual("three hundred thirty three thousand three hundred thirty three", self.converter.convert(333333))
+    
+    def test_convert_123456(self):
+        self.assertEqual("one hundred twenty three thousand four hundred fifty six", self.converter.convert(123456))
+    
+    def test_convert_987654(self):
+        self.assertEqual("nine hundred eighty seven thousand six hundred fifty four", self.converter.convert(987654))
+    
+    def test_convert_101010(self):
+        self.assertEqual("one hundred one thousand ten", self.converter.convert(101010))
+
+    def test_convert_20002(self):
+        self.assertEqual("twenty thousand two", self.converter.convert(20002))

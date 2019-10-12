@@ -1,4 +1,8 @@
 """
+run program with this command:
+
+python word_numbers.py <number>
+
 Constraints/etc.:
 
 - handle inputs ranging from 0 to 1000000, inclusive
@@ -27,6 +31,7 @@ class WordNumbers():
             return self.convert_three_digit(number)
         elif total_count in [4, 5, 6]:
             thousands_number = int(str(number)[:-3])
+            remaining_numbers = int(str(number)[-3:])
             thousands_count = self.get_digit_count(thousands_number)
             if thousands_count == 1:
                 output = self.single_digit_numbers[thousands_number]
@@ -34,7 +39,20 @@ class WordNumbers():
                 output = self.convert_two_digit(thousands_number)
             else:
                 output = self.convert_three_digit(thousands_number)
-            return output + " thousand"
+            
+            output += " thousand"
+
+            if remaining_numbers == 0:
+                return output
+
+            if self.get_digit_count(remaining_numbers) == 1:
+                output += " " + self.single_digit_numbers[remaining_numbers]
+            elif self.get_digit_count(remaining_numbers) == 2:
+                output += " " + self.convert_two_digit(remaining_numbers)
+            else:
+                output += " " + self.convert_three_digit(remaining_numbers)
+            return output
+
         elif total_count in [7]:
             return "one million"
 
@@ -43,7 +61,10 @@ class WordNumbers():
         remaining_numbers = int(str(number)[-2:])
         output = self.single_digit_numbers[hundreds_number] + " hundred"
         if remaining_numbers != 0:
-            output += " " + self.convert_two_digit(remaining_numbers)
+            if self.get_digit_count(remaining_numbers) == 1:
+                output += " " + self.single_digit_numbers[remaining_numbers]
+            else:
+                output += " " + self.convert_two_digit(remaining_numbers)
         return output
 
     def convert_two_digit(self, number):
