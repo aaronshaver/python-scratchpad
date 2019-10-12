@@ -29,9 +29,6 @@ class Tests(unittest.TestCase):
     def test_convert_2(self):
         self.assertEqual("two", self.converter.convert(2))
 
-    def test_convert_3(self):
-        self.assertEqual("three", self.converter.convert(3))
-
     def test_convert_4(self):
         self.assertEqual("four", self.converter.convert(4))
 
@@ -64,3 +61,12 @@ class Tests(unittest.TestCase):
 
     def test_convert_1_000_000(self):
         self.assertEqual("one million", self.converter.convert(1000000))
+
+    def test_convert_3(self):
+        self.assertEqual("three", self.converter.convert(3))
+
+    def test_convert_33(self):
+        self.assertEqual("thirty three", self.converter.convert(33))
+
+    def test_convert_82_000(self):
+        self.assertEqual("eighty two thousand", self.converter.convert(82000))

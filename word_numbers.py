@@ -7,6 +7,7 @@ Constraints/etc.:
 """
 
 import math
+import sys
 
 class WordNumbers():
 
@@ -21,7 +22,11 @@ class WordNumbers():
         if count == 1:
             return self.single_digit_numbers[number]
         elif count == 2:
-            return self.double_digit_numbers[number]
+            if number in self.double_digit_numbers.keys():
+                return self.double_digit_numbers[number]
+            else:
+                return self.double_digit_numbers[number // 10 * 10] + " " + \
+                    self.single_digit_numbers[number % 10]
         elif count in [4, 5]:
             thousands_number = int(str(number)[:-3])
             if self.get_digit_count(thousands_number) == 2:
@@ -64,3 +69,7 @@ class WordNumbers():
         80: "eighty",
         90: "ninety",
     }
+
+if __name__ == "__main__":
+    converter = WordNumbers()
+    print(converter.convert(int(sys.argv[1])))
