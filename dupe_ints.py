@@ -40,9 +40,9 @@ def first_dupe_v2(numbers):
 # print('expect -4, get ' + str(first_dupe_v2(nums3)))
 # print('expect 3, get ' + str(first_dupe_v2(nums4)))
 
-if __name__=='__main__':
+if __name__ == '__main__':
     from timeit import Timer
-    test_data = nums_dupe
+    test_data = nums_dupe  # so we can switch out test sets easily
     t = Timer("first_dupe(test_data)", "from __main__ import first_dupe, test_data")
     print(t.timeit(number=1000))
     t = Timer("first_dupe_v2(test_data)", "from __main__ import first_dupe_v2, test_data")
