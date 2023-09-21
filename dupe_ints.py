@@ -2,7 +2,8 @@
 # return the value of the first duplicate in a list of integers
 # return null if there are no dupes
 
-import time, random
+import random
+from timeit import Timer
 
 ITERATIONS = 1000
 
@@ -48,8 +49,6 @@ def first_dupe_v3(numbers):
     return None
 
 if __name__ == '__main__':
-    from timeit import Timer
-
     # use a var so we can switch out test sets easily
     test_data = mixed_data
 
